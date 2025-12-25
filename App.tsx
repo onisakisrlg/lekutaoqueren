@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { 
   Apple, 
@@ -26,7 +25,11 @@ import {
   AlertTriangle,
   SearchX,
   Hash,
-  Copy
+  Copy,
+  Ban,
+  ImageOff,
+  CreditCard,
+  Percent
 } from 'lucide-react';
 
 const BrandIcon = ({ text, color = "bg-yellow-50", textColor = "text-yellow-600" }: { text: string, color?: string, textColor?: string }) => (
@@ -301,65 +304,97 @@ const App: React.FC = () => {
                 </div>
 
                 {/* 5. Scam Checker (Shifted to end of Row 2) */}
-                <div className="md:col-span-2 bg-white rounded-[2rem] p-6 border border-orange-100 relative overflow-hidden group shadow-sm hover:shadow-lg transition-all">
+                <div className="md:col-span-2 bg-white rounded-[2rem] p-8 border border-orange-100 relative overflow-hidden group shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
                     <div className="relative z-10">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center">
-                                <ShieldAlert size={20} />
+                        <div className="flex items-center gap-4 mb-6">
+                            <div className="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center shadow-sm shrink-0">
+                                <ShieldAlert size={28} />
                             </div>
                             <div>
-                                <h3 className="text-lg font-bold text-gray-900">防诈骗查询</h3>
-                                <p className="text-xs text-gray-400">输入网址或关键词检测风险</p>
+                                <h3 className="text-2xl font-black text-gray-900 leading-tight">防诈骗查询</h3>
+                                <p className="text-sm text-gray-500 font-medium mt-1">乐酷淘安全中心 · 实时风险检测</p>
                             </div>
                         </div>
-                        <div className="flex gap-2 mb-4">
-                            <input 
-                                type="text" 
-                                placeholder="如: flypixes.click" 
-                                value={scamInput}
-                                onChange={(e) => {
-                                    setScamInput(e.target.value);
-                                    setScamStatus('idle');
-                                    setMatchedDomain(null);
-                                }}
-                                onKeyDown={(e) => e.key === 'Enter' && handleCheckScam()}
-                                className="flex-1 bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-100 transition-all placeholder:text-gray-400"
-                            />
-                            <button onClick={handleCheckScam} className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 rounded-xl text-sm transition-colors shadow-lg shadow-orange-200">查询</button>
+
+                        {/* Enhanced Input Area */}
+                        <div className="bg-orange-50/50 p-2 rounded-2xl border border-orange-100 flex flex-col sm:flex-row gap-2 mb-6 transition-all hover:bg-orange-50 hover:border-orange-200 focus-within:ring-4 focus-within:ring-orange-100/50">
+                             <div className="flex-1 flex items-center pl-4 py-1">
+                                <Search className="text-orange-300 shrink-0 mr-3" size={24} />
+                                <input 
+                                    type="text" 
+                                    placeholder="输入网址检测 (如: flypixes.click)" 
+                                    value={scamInput}
+                                    onChange={(e) => {
+                                        setScamInput(e.target.value);
+                                        setScamStatus('idle');
+                                        setMatchedDomain(null);
+                                    }}
+                                    onKeyDown={(e) => e.key === 'Enter' && handleCheckScam()}
+                                    className="w-full bg-transparent border-none text-lg font-bold text-gray-900 placeholder:text-gray-400 focus:ring-0 px-0"
+                                />
+                             </div>
+                             <button 
+                                onClick={handleCheckScam} 
+                                className="bg-orange-500 hover:bg-orange-600 text-white font-black text-base px-8 py-3 rounded-xl shadow-lg shadow-orange-200 hover:shadow-orange-300 transition-all active:scale-95 shrink-0"
+                             >
+                                立即查询
+                             </button>
                         </div>
-                        {scamStatus !== 'idle' && (
-                            <div className={`p-3 rounded-xl flex items-start gap-3 text-sm animate-in fade-in zoom-in-95 duration-200 ${scamStatus === 'danger' ? 'bg-red-50 text-red-700 border border-red-100' : 'bg-green-50 text-green-700 border border-green-100'}`}>
+                        
+                        {/* Dynamic Content: Results or Tips */}
+                        {scamStatus !== 'idle' ? (
+                            <div className={`p-5 rounded-2xl flex items-start gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 ${scamStatus === 'danger' ? 'bg-red-50 border-2 border-red-100' : 'bg-green-50 border-2 border-green-100'}`}>
                                 {scamStatus === 'danger' ? (
                                     <>
-                                        <AlertTriangle size={18} className="shrink-0 mt-0.5" />
+                                        <div className="bg-red-100 p-2 rounded-full text-red-600 shrink-0"><AlertTriangle size={24} /></div>
                                         <div>
-                                            <p className="font-bold">高风险警示！检测到诈骗域名。</p>
-                                            {matchedDomain && <p className="text-xs bg-red-100/50 px-2 py-0.5 rounded mt-1 inline-block">匹配: {matchedDomain}</p>}
+                                            <h4 className="text-lg font-black text-red-700 mb-1">高风险警示！检测到诈骗域名</h4>
+                                            {matchedDomain && <p className="text-sm font-bold bg-white/50 text-red-800 px-2 py-1 rounded inline-block">匹配黑名单: {matchedDomain}</p>}
+                                            <p className="text-sm text-red-600 mt-2 font-medium">请勿进行任何转账或交易操作，避免财产损失。</p>
                                         </div>
                                     </>
                                 ) : (
                                     <>
-                                        <ShieldCheck size={18} className="shrink-0 mt-0.5" />
+                                        <div className="bg-green-100 p-2 rounded-full text-green-600 shrink-0"><ShieldCheck size={24} /></div>
                                         <div>
-                                            <p className="font-bold">暂无该域名黑名单记录。</p>
+                                            <h4 className="text-lg font-black text-green-700 mb-1">暂无风险记录</h4>
+                                            <p className="text-sm text-green-600 font-medium">该域名未在乐酷淘黑名单中。请依然保持警惕，注意核实。</p>
                                         </div>
                                     </>
                                 )}
                             </div>
+                        ) : (
+                            <div className="mt-2">
+                                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">常见诈骗特征 / HIGH RISK FEATURES</p>
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                    <div className="bg-orange-50 border border-orange-100 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-2 hover:bg-white hover:shadow-sm transition-all">
+                                        <Ban size={20} className="text-orange-400" />
+                                        <span className="text-xs font-bold text-gray-600">页面制作粗糙</span>
+                                    </div>
+                                    <div className="bg-orange-50 border border-orange-100 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-2 hover:bg-white hover:shadow-sm transition-all">
+                                        <ImageOff size={20} className="text-orange-400" />
+                                        <span className="text-xs font-bold text-gray-600">盗用其他网站图片</span>
+                                    </div>
+                                    <div className="bg-orange-50 border border-orange-100 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-2 hover:bg-white hover:shadow-sm transition-all">
+                                        <CreditCard size={20} className="text-orange-400" />
+                                        <span className="text-xs font-bold text-gray-600">仅支持转账</span>
+                                    </div>
+                                    <div className="bg-orange-50 border border-orange-100 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-2 hover:bg-white hover:shadow-sm transition-all">
+                                        <Percent size={20} className="text-orange-400" />
+                                        <span className="text-xs font-bold text-gray-600">异常的折扣</span>
+                                    </div>
+                                </div>
+                            </div>
                         )}
-                        <div className="mt-4 text-xs leading-relaxed text-gray-500 border-t border-orange-100/50 pt-4">
-                            <p className="mb-1 font-bold text-gray-700">💡 为什么需要查询？</p>
-                            <p>在使用 APP <span className="font-bold text-orange-600">指定购买</span> 功能提交链接前，建议先进行风险检测。</p>
-                            <p className="mt-1">诈骗网站通常特征：<span className="text-gray-700 font-medium">页面粗糙、盗用正版图片、仅支持转账付款</span>。我们将持续更新黑名单，为您排雷。</p>
-                        </div>
                     </div>
-                    <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
-                        <ShieldAlert size={100} className="text-orange-500 -rotate-12" />
+                    
+                    <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
+                        <ShieldAlert size={140} className="text-orange-500 -rotate-12" />
                     </div>
                 </div>
 
                 {/* 6. Official Account (WeChat) - Copy to Clipboard Enabled */}
-                <div className="md:col-span-2 bg-white rounded-[2rem] p-8 shadow-sm hover:shadow-lg transition-all group relative overflow-hidden flex flex-col justify-between">
+                <div className="md:col-span-2 bg-white rounded-[2rem] p-8 shadow-sm hover:shadow-lg transition-all group relative overflow-hidden flex flex-col justify-between h-full">
                     <div className="relative z-10">
                         <div className="flex items-center gap-5 mb-8">
                             <div className="w-16 h-16 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center shadow-sm shrink-0">
@@ -387,16 +422,16 @@ const App: React.FC = () => {
                                 <div>
                                     <h4 className="font-bold text-gray-900 mb-1">账号绑定</h4>
                                     <p className="text-gray-600 font-medium leading-relaxed">
-                                        关注后点击菜单栏 <span className="text-gray-900 font-extrabold bg-white px-1.5 rounded shadow-sm">H5网页版</span> 登录，即可完成绑定。
+                                        点击H5网页版登录后，在 <span className="text-gray-900 font-extrabold bg-white px-1.5 rounded shadow-sm">【我的】-【更多设置】-【绑定微信】</span>。
                                     </p>
                                 </div>
                             </div>
                              <div className="flex gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100 hover:border-green-200 transition-colors">
                                 <div className="bg-white text-green-600 text-sm font-black px-3 py-1.5 rounded-lg shadow-sm h-fit shrink-0 border border-green-100">02</div>
                                 <div>
-                                    <h4 className="font-bold text-gray-900 mb-1">极速秒切</h4>
-                                    <p className="text-gray-600 font-medium leading-relaxed">
-                                        向公众号发送 <span className="text-gray-900 font-extrabold bg-white px-1.5 rounded shadow-sm">煤炉ID或链接</span>，系统扣除余额自动秒切。
+                                    <h4 className="font-bold text-gray-900 mb-1">极速秒切 & 通知</h4>
+                                    <p className="text-gray-600 font-medium leading-relaxed text-sm">
+                                        绑定后发送 <span className="text-gray-900 font-extrabold bg-white px-1.5 rounded shadow-sm">煤炉MID或链接</span>，系统扣除余额自动秒切（仅限煤炉个人卖家商品，不支持SHOP商品和拍卖商品）。公众号也会推送商品上新和入库等通知。
                                     </p>
                                 </div>
                             </div>
@@ -424,7 +459,7 @@ const App: React.FC = () => {
                 </div>
 
                 {/* 7. Help Center */}
-                <div className="md:col-span-2 bg-white rounded-[2rem] p-6 md:p-8 shadow-sm hover:shadow-lg transition-all flex flex-col h-[360px]">
+                <div className="md:col-span-2 bg-white rounded-[2rem] p-6 md:p-8 shadow-sm hover:shadow-lg transition-all flex flex-col h-full">
                     <div className="flex items-center gap-4 mb-6">
                         <div className="w-12 h-12 bg-yellow-50 text-yellow-600 rounded-2xl flex items-center justify-center">
                             <BookOpen size={24} />
@@ -444,7 +479,7 @@ const App: React.FC = () => {
                             className="w-full bg-gray-50 border border-gray-100 rounded-xl pl-12 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-100 transition-all"
                         />
                     </div>
-                    <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-2">
+                    <div className="h-96 lg:flex-auto overflow-y-auto pr-2 custom-scrollbar space-y-2">
                         {filteredArticles.length > 0 ? filteredArticles.map((item, index) => (
                             <button key={index} onClick={() => setSelectedArticle(item)} className="w-full flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors text-left group">
                                 <div className="flex items-center gap-3">
