@@ -69,7 +69,9 @@ const App: React.FC = () => {
     'fake-mercari.com',
     'scam-shop.jp',
     'fishing-site.net',
-    'www.fxpl.flypixes.click'
+    'www.fxpl.flypixes.click',
+    'decski.enrank.shop',
+    'enrank.shop'
   ];
 
   const handleCheckScam = () => {
@@ -148,6 +150,11 @@ const App: React.FC = () => {
   const handleCopyEmail = (email: string) => {
     navigator.clipboard.writeText(email);
     alert(`已复制邮箱: ${email}`);
+  };
+
+  const handleCopyWeChat = () => {
+    navigator.clipboard.writeText('乐酷淘');
+    alert('已复制公众号名称 "乐酷淘" \n请打开微信粘贴搜索');
   };
 
   const jpPlatforms = [
@@ -260,7 +267,7 @@ const App: React.FC = () => {
                 </a>
 
                 {/* 3. Weibo Card (New Position) */}
-                <a href="#" className="col-span-1 bg-white rounded-[2rem] p-6 flex flex-col justify-between group shadow-sm hover:shadow-lg transition-all">
+                <a href="https://weibo.com/u/6977355074" target="_blank" className="col-span-1 bg-white rounded-[2rem] p-6 flex flex-col justify-between group shadow-sm hover:shadow-lg transition-all">
                     <div className="w-12 h-12 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <Hash size={24} />
                     </div>
@@ -340,27 +347,79 @@ const App: React.FC = () => {
                                 )}
                             </div>
                         )}
+                        <div className="mt-4 text-xs leading-relaxed text-gray-500 border-t border-orange-100/50 pt-4">
+                            <p className="mb-1 font-bold text-gray-700">💡 为什么需要查询？</p>
+                            <p>在使用 APP <span className="font-bold text-orange-600">指定购买</span> 功能提交链接前，建议先进行风险检测。</p>
+                            <p className="mt-1">诈骗网站通常特征：<span className="text-gray-700 font-medium">页面粗糙、盗用正版图片、仅支持转账付款</span>。我们将持续更新黑名单，为您排雷。</p>
+                        </div>
                     </div>
                     <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
                         <ShieldAlert size={100} className="text-orange-500 -rotate-12" />
                     </div>
                 </div>
 
-                {/* 6. Official Account (WeChat) */}
-                <div className="md:col-span-2 bg-white rounded-[2rem] p-6 md:p-8 flex items-center justify-between shadow-sm hover:shadow-lg transition-all group">
-                    <div className="flex-1">
-                        <div className="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center mb-6">
-                            <QrCode size={24} />
+                {/* 6. Official Account (WeChat) - Copy to Clipboard Enabled */}
+                <div className="md:col-span-2 bg-white rounded-[2rem] p-8 shadow-sm hover:shadow-lg transition-all group relative overflow-hidden flex flex-col justify-between">
+                    <div className="relative z-10">
+                        <div className="flex items-center gap-5 mb-8">
+                            <div className="w-16 h-16 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center shadow-sm shrink-0">
+                                <QrCode size={32} />
+                            </div>
+                            <div>
+                                <h3 className="text-3xl font-black text-gray-900 leading-none mb-2">官方公众号</h3>
+                                <div className="flex items-center gap-2 text-base text-gray-500 font-medium">
+                                    微信搜索：
+                                    <button 
+                                        onClick={handleCopyWeChat}
+                                        className="bg-green-50 text-green-700 px-3 py-1 rounded-lg font-bold border border-green-100 hover:bg-green-100 hover:border-green-200 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer group/btn"
+                                        title="点击复制公众号名称"
+                                    >
+                                        乐酷淘
+                                        <Copy size={14} className="opacity-50 group-hover/btn:opacity-100 transition-opacity" />
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <h3 className="text-2xl font-black text-gray-900 mb-2">官方公众号</h3>
-                        <p className="text-sm text-gray-500 mb-6">微信搜索：<span className="text-green-600 font-bold underline decoration-2 underline-offset-4">乐酷淘</span></p>
-                        <div className="flex gap-2">
-                            <span className="px-3 py-1 bg-gray-50 text-gray-500 text-xs font-bold rounded-lg border border-gray-100">绑定账号</span>
-                            <span className="px-3 py-1 bg-gray-50 text-gray-500 text-xs font-bold rounded-lg border border-gray-100">煤炉秒切</span>
+                        
+                        <div className="space-y-4 mb-8">
+                            <div className="flex gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100 hover:border-green-200 transition-colors">
+                                <div className="bg-white text-green-600 text-sm font-black px-3 py-1.5 rounded-lg shadow-sm h-fit shrink-0 border border-green-100">01</div>
+                                <div>
+                                    <h4 className="font-bold text-gray-900 mb-1">账号绑定</h4>
+                                    <p className="text-gray-600 font-medium leading-relaxed">
+                                        关注后点击菜单栏 <span className="text-gray-900 font-extrabold bg-white px-1.5 rounded shadow-sm">H5网页版</span> 登录，即可完成绑定。
+                                    </p>
+                                </div>
+                            </div>
+                             <div className="flex gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100 hover:border-green-200 transition-colors">
+                                <div className="bg-white text-green-600 text-sm font-black px-3 py-1.5 rounded-lg shadow-sm h-fit shrink-0 border border-green-100">02</div>
+                                <div>
+                                    <h4 className="font-bold text-gray-900 mb-1">极速秒切</h4>
+                                    <p className="text-gray-600 font-medium leading-relaxed">
+                                        向公众号发送 <span className="text-gray-900 font-extrabold bg-white px-1.5 rounded shadow-sm">煤炉ID或链接</span>，系统扣除余额自动秒切。
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="w-32 h-32 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center text-gray-300">
-                        <span className="text-xs text-center">扫码关注<br/>(占位)</span>
+
+                    <div className="bg-yellow-50 border-2 border-yellow-100 border-dashed rounded-xl p-5 relative z-10">
+                        <div className="flex gap-4 items-center">
+                             <div className="bg-yellow-100 p-2 rounded-full shrink-0 text-yellow-600">
+                                <AlertTriangle size={20} />
+                             </div>
+                             <div>
+                                <h4 className="font-bold text-yellow-800 text-sm uppercase tracking-wide mb-0.5">重要提示：余额不互通？</h4>
+                                <p className="text-sm text-yellow-900 font-medium leading-relaxed">
+                                    如遇异常，请检查 <span className="font-black underline decoration-yellow-500/50">H5端与APP端</span> 是否为同一账号，避免重复注册。
+                                </p>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    {/* Decorative BG */}
+                    <div className="absolute -right-6 -bottom-6 text-green-50 opacity-50 pointer-events-none">
+                        <QrCode size={180} />
                     </div>
                 </div>
 
