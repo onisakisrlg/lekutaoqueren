@@ -233,7 +233,73 @@ const App: React.FC = () => {
     },
     { title: "Animate代购规则", tags: ["规则", "代购", "动漫"] },
     { title: "kyoani代购规则", tags: ["规则", "代购", "京阿尼"] },
-    { title: "Mandarake代购规则", tags: ["规则", "代购", "二手"] },
+    { 
+        title: "Mandarake代购规则", 
+        tags: ["规则", "代购", "二手", "Mandarake"],
+        content: (
+            <div className="space-y-6 text-sm text-gray-700">
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">一、平台概述</h4>
+                    <p className="leading-relaxed">
+                        Mandarake（まんだらけ） 是日本一家知名的二手动漫、漫画、游戏、周边及同人志专卖连锁店，同时也运营着线上购物网站。商品多为二手，但状态良好，且常有稀缺或绝版物品。主要分布在东京（中野、秋叶原）、大阪、名古屋等地，以“Mandarake Complex”形式集中多家主题分店。
+                    </p>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">二、下单方式</h4>
+                    <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-2">
+                        <p><span className="font-bold">① 页面导航：</span>通过app首页-mandarake图标进入站点，筛选商品品类精确浏览相关商品；</p>
+                        <p><span className="font-bold">② 站内搜索：</span>也可通过站内搜索栏在输入商品关进并选择【mandarake】图标搜索相关商品，进入选择的商品的详情页进行下单操作。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">三、费用构成</h4>
+                    <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 text-blue-800 text-xs">
+                        购买Mandarake的商品还需支付 <span className="font-bold">10% 的消费税</span>，该消费税为Mandarake直接收取，与乐酷淘平台无关，海关关税由用户所在地海关决定是否收取。
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">四、预约商品</h4>
+                    <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                        <li>若购买页面上标注为预约的商品，该商品为预约商品，无法立刻发货，需等到标注的时间才进行发售。</li>
+                        <li>若用户与预约商品一起购入了有现货的商品时，会等到预约商品发售后一起发货，不会分开发货。</li>
+                        <li className="text-red-600 font-bold">Mandarake不支持预约商品取消订单操作，一旦购买无法取消，因此下单前请再三思考。</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">五、发货时间</h4>
+                    <p className="text-gray-600">日本卖家发货普遍较慢，通常为下单后的3~7天左右，如果超过14天还未发货或乐酷淘日本仓库还未收到相关商品，可联系在线客服咨询。</p>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">六、日本国内运费</h4>
+                    <div className="space-y-2 text-gray-600">
+                        <p>Mandarake 的日本国内运费通常根据包裹的总重量（包括商品和包装材料）计算。采用按店收取邮费的方式。实际运费以Mandarake站点页面结算时为准。</p>
+                        <p className="text-xs bg-gray-50 p-2 rounded text-gray-500">若是到付商品，平台会事先预收2000日元的日本国内运费，最终运费会在商品入库后采用“多退少补”方式原路退回。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">七、退货退款</h4>
+                    <div className="bg-red-50 p-4 rounded-xl border border-red-100 space-y-3 text-xs text-red-800">
+                        <p className="font-bold"><AlertTriangle size={14} className="inline mr-1"/>重要声明：</p>
+                        <ul className="list-disc pl-4 space-y-1">
+                            <li>通过本平台成功下单的订单，不可因为自身原因而取消订单。因此用户于付款前再三确认自己购买意向和所购商品是否正确再进行下单。</li>
+                            <li>平台默认用户在购买时已明晰商品所属状态，因此平台作为一个帮助日本国外买家和日本国内卖家沟通的购买通道，不承担任何从Mandarake购买商品的任何品相问题的责任，不接受任何情况下的单方面要求取消订单退款的要求。</li>
+                            <li>Mandarake为中古商品贩售网站，中古商品通常会有使用痕迹、划痕、污渍、外盒变形、卡口有松动或其他卖家说明的其他问题，由于上述中古商品常见的折旧现象不属于商品的质量问题，无法享受全程购物保障计划、平台不承担任何从Mandarake购买商品的任何品相问题的责任，不接受任何情况下的单方面要求取消订单退款的要求。</li>
+                            <li>非流水线生产的服装尺寸会存在一定误差，所以无法明确标注，用户只能自行了解制作者或制作社团的通用尺寸。</li>
+                            <li>商品换货、卖家直接取消订单等没有让平台产生人工对应沟通成本的，平台不收取费用；商品申请取消让平台产生人工对应沟通成本的，按商品价格价格收取对应费。</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <p className="text-center text-xs text-gray-400 mt-4 pt-4 border-t">因此，请充分了解相关购物风险，认真仔细阅读商品页面上的说明再进行选购。</p>
+            </div>
+        )
+    },
     { 
         title: "moponline代购规则", 
         tags: ["规则", "代购", "奥特莱斯"],
