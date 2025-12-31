@@ -27,10 +27,10 @@ import {
   ImageOff, 
   CreditCard, 
   Percent, 
-  ShoppingBag,
-  CheckCircle2,
-  Clock,
-  Bot
+  ShoppingBag, 
+  CheckCircle2, 
+  Clock, 
+  Bot 
 } from 'lucide-react';
 
 const BrandIcon = ({ text, color = "bg-yellow-50", textColor = "text-yellow-600", iconUrl }: { text: string, color?: string, textColor?: string, iconUrl?: string }) => (
@@ -714,7 +714,7 @@ const App: React.FC = () => {
                         <div className="bg-blue-50 p-3 rounded-xl border border-blue-100">
                             <h5 className="font-bold text-blue-900 text-sm mb-1">1. 核心凭证 (缺一不可)</h5>
                             <ul className="list-disc pl-4 text-xs text-blue-800 space-y-1">
-                                <li><span className="font-bold">完整开箱视频：</span>未拆封展示单号 -> 一镜到底 -> 完全拆除。不得剪辑/暂停/加速。</li>
+                                <li><span className="font-bold">完整开箱视频：</span>未拆封展示单号 ➜ 一镜到底 ➜ 完全拆除。不得剪辑/暂停/加速。</li>
                                 <li><span className="font-bold">出库图：</span>仓库发货原始照片。</li>
                                 <li><span className="font-bold">签收凭证：</span>快递员面前核对的证明。</li>
                             </ul>
@@ -759,8 +759,7 @@ const App: React.FC = () => {
             </div>
         )
     },
-    { 
-        title: "免责声明", 
+    { title: "免责声明", 
         tags: ["法律", "声明"], 
         content: (
             <>
