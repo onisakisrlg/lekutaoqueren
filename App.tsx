@@ -30,7 +30,8 @@ import {
   ShoppingBag, 
   CheckCircle2, 
   Clock, 
-  Bot 
+  Bot,
+  X
 } from 'lucide-react';
 
 const BrandIcon = ({ text, color = "bg-yellow-50", textColor = "text-yellow-600", iconUrl }: { text: string, color?: string, textColor?: string, iconUrl?: string }) => (
@@ -88,6 +89,7 @@ const App: React.FC = () => {
   const [scamInput, setScamInput] = useState('');
   const [scamStatus, setScamStatus] = useState<'idle' | 'safe' | 'danger'>('idle');
   const [matchedDomain, setMatchedDomain] = useState<string | null>(null);
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const scrollPositionRef = useRef(0);
 
   // Handle scroll restoration when switching views
@@ -231,7 +233,127 @@ const App: React.FC = () => {
             </>
         )
     },
-    { title: "Animate代购规则", tags: ["规则", "代购", "动漫"] },
+    { 
+        title: "Animate代购规则", 
+        tags: ["规则", "代购", "动漫", "Animate"],
+        content: (
+            <div className="space-y-6 text-sm text-gray-700">
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">一、平台概述</h4>
+                    <p className="leading-relaxed">
+                        Animate是日本一家知名的动漫周边连锁店，主要事业内容为动漫相关角色商品、书籍杂志、CD、DVD、游戏、画材等物品的贩卖。在动画幸运星中看到的“店长”的形象，其实就是Animate的店长卡通造型。
+                    </p>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">二、下单方式</h4>
+                    <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-3">
+                        <div className="bg-white border border-gray-200 p-3 rounded-lg shadow-sm">
+                            <span className="font-bold text-gray-800 block mb-1">① 页面导航下单</span>
+                            <span className="text-gray-600">点击【Animate】图标进入站点，按品类筛选心仪商品，进入商品详情页，进行自助下单操作。</span>
+                        </div>
+                        <div className="bg-white border border-gray-200 p-3 rounded-lg shadow-sm">
+                            <span className="font-bold text-gray-800 block mb-1">② 站内搜索下单</span>
+                            <span className="text-gray-600">通过平台内搜索栏输入商品名称，并选择【Animate】作为搜索范围。查找相关商品后进入详情页，进行自助下单操作。</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">三、运费说明</h4>
+                    <div className="space-y-3">
+                        <div className="bg-blue-50 p-3 rounded-lg border border-blue-100 text-blue-800 text-xs">
+                            <span className="font-bold block mb-1">① 配送方式</span>
+                            用户在平台所购A站商品只能选【宅急便】的配送方式，每笔订单邮费为 <span className="font-bold">594日元</span>。
+                        </div>
+                        
+                        <div className="bg-green-50 p-3 rounded-lg border border-green-100 text-xs text-gray-700">
+                            <span className="font-bold text-green-800 block mb-2">② 免邮规则 (满足以下任一条件)</span>
+                            <ul className="list-disc pl-4 space-y-1 mb-2">
+                                <li>书籍类商品：单笔订单 ≥ <span className="font-bold text-green-700">3300日元(含税)</span></li>
+                                <li>CD类商品：单笔订单 ≥ <span className="font-bold text-green-700">6600日元(含税)</span></li>
+                                <li>角色周边类商品：单笔订单 ≥ <span className="font-bold text-green-700">8800日元(含税)</span></li>
+                            </ul>
+                            <p className="text-[10px] text-gray-500">* 不含手办・Cosplay服饰・画材・日历类商品</p>
+                        </div>
+
+                        <div className="bg-gray-50 p-3 rounded-lg border border-gray-100 text-xs text-gray-600">
+                            <span className="font-bold block mb-1 text-gray-800">③ 补充说明</span>
+                            <ul className="list-disc pl-4 space-y-1">
+                                <li>同一类别下，购买多件商品可合并计算金额。</li>
+                                <li>部分商品可能无法与其他商品合并发货，若判定为「分开发货」则无法享受免邮。</li>
+                                <li>免邮判断以订单确认时的产品总价为准。因缺货等导致部分取消后金额未达标，不会追加运费。</li>
+                                <li>即使标注「免运费」，若未达条件仍将产生运费。</li>
+                                <li>平台Animate站点显示的商品价格已含税 (日本国内消费税)。海关关税由用户所在地海关决定是否收取。</li>
+                                <li>本服务可能随时终止，恕不另行通知。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">四、合并发货</h4>
+                    <p className="text-xs text-gray-500 mb-2">关于同一购物车内多件商品合并发货的说明：</p>
+                    
+                    <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm mb-4">
+                        <h5 className="font-bold text-gray-800 mb-2 flex items-center gap-1"><CheckCircle2 size={16} className="text-green-500"/> 可合并发货的情况</h5>
+                        <div className="space-y-3 text-xs text-gray-600 pl-2">
+                            <div>
+                                <span className="font-bold block text-gray-700">① 预售（未发售）商品</span>
+                                <ul className="list-disc pl-4 mt-1">
+                                    <li>有明确发售日期：最早与最晚发售日相差在【30天以内】时。</li>
+                                    <li>发售日未定(仅大致发售期)：发售日期名称一致的（如都为同月上旬发售）。</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <span className="font-bold block text-gray-700">② 已发售商品</span>
+                                <p className="pl-4 mt-1">下单时库存状态为「通常1～5天内到货」或「需调货」时。</p>
+                            </div>
+                            <div>
+                                <span className="font-bold block text-gray-700">③ 混合订单 (预售+已售)</span>
+                                <p className="pl-4 mt-1">将自动分开发货，分情况处理：</p>
+                                <ul className="list-disc pl-8 mt-1 text-[10px]">
+                                    <li>已发售商品：自动合并订单，合并发货。</li>
+                                    <li>有明确发售日预售品：以最早发售日起30天为周期合并。</li>
+                                    <li>大致发售期预售品：发售日期名称一致的合并。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-red-50 border border-red-100 rounded-xl p-4">
+                        <h5 className="font-bold text-red-800 mb-2 flex items-center gap-1"><AlertTriangle size={16}/> 不可合并发货的情况</h5>
+                        <p className="text-xs text-red-700 mb-2">以下商品将单独发货并分别产生运费和手续费：</p>
+                        <ul className="list-disc pl-4 space-y-1 text-xs text-red-600">
+                            <li>预售与已售商品不可合并发货。</li>
+                            <li>尺寸较大的商品 (等身大海报、A3海报、巨型靠垫、仿制刀、海报筒等)。</li>
+                            <li>含时效性商品 (活动参加券、漫展宣传册、门票、保质期食品等)。</li>
+                            <li>特价商品及其他判定为难以合并的商品。</li>
+                        </ul>
+                        <p className="mt-2 text-[10px] text-red-500 font-bold">* 无法以分开发货为由要求取消订单或退货。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">五、售后相关</h4>
+                    <div className="space-y-3 text-xs text-gray-600">
+                        <p>✦ 通过本平台成功下单的订单，不可因为自身原因而取消订单。请用户在付款前审慎确认。</p>
+                        <p>✦ 平台默认用户在购买时已明晰商品所属状态，不承担品相责任。</p>
+                        <p>✦ 商品换货、卖家直接取消订单等没有让平台产生人工对应沟通成本的，平台不收取费用；若产生人工沟通成本，将收取对应费：订单价格（含岛内运费）的10%（最低100日元）。</p>
+                        
+                        <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-100 text-yellow-900">
+                            <span className="font-bold block mb-1">Animate售后特殊说明</span>
+                            用户需在收到商品入库返图后<span className="font-bold">5天内</span>完成确认操作。如确认存在错发、漏发等问题，请在5天内联系平台客服，并提供有效凭证。平台将发送邮件咨询官方的处理流程，并协助处理争议。商品入库返图超过5天，平台将不再做任何应对，默认用户无异议。
+                        </div>
+
+                        <p className="text-blue-500">✦ 详细售后服务，请查阅用户手册-《售后服务》。</p>
+                    </div>
+                </section>
+
+                <p className="text-center text-xs text-gray-400 mt-4 pt-4 border-t">请充分了解相关购物风险，认真仔细阅读商品页面上的说明再进行选购。</p>
+            </div>
+        )
+    },
     { 
         title: "kyoani代购规则", 
         tags: ["规则", "代购", "京阿尼"],
@@ -1658,12 +1780,74 @@ const App: React.FC = () => {
             <footer className="mt-16 text-center text-gray-400 text-xs pb-8">
                 <p className="mb-2">© 2025 乐酷淘 lekutao · All rights reserved.</p>
                 <div className="flex justify-center gap-4">
-                    <a href="#" className="hover:text-gray-600">隐私政策</a>
+                    <button onClick={() => setShowPrivacyPolicy(true)} className="hover:text-gray-600">隐私政策</button>
                     <span>|</span>
                     <a href="#" className="hover:text-gray-600">服务条款</a>
                 </div>
             </footer>
         </div>
+
+        {/* Privacy Policy Modal */}
+        {showPrivacyPolicy && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm" onClick={() => setShowPrivacyPolicy(false)}>
+                <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
+                    <div className="p-4 border-b border-gray-100 flex justify-between items-center shrink-0">
+                        <h2 className="text-lg font-bold text-gray-900">隐私政策</h2>
+                        <button onClick={() => setShowPrivacyPolicy(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                            <X size={20} className="text-gray-500" />
+                        </button>
+                    </div>
+                    <div className="p-6 overflow-y-auto custom-scrollbar text-sm text-gray-600 space-y-4 leading-relaxed">
+                        <div>
+                            <h3 className="font-bold text-gray-900 mb-2">隐私保护</h3>
+                            <p>1. 乐酷淘（以下简称“本公司”）遵守有关个人信息保护的法律、法规以及其他规范。</p>
+                            <p>2. 本公司根据“个人信息保护管理体系的要求事项(JISQ 15001)”，在收集、使用以及提供个人信息时將严格遵守、执行本规定。</p>
+                            <p>3. 本公司在提供网络服务而获得客户的个人信息时，将预先通知客户本人，本公司的联系窗口等信息，在得到客户本人同意后，在适当的范围内取得个人信息。</p>
+                            <p>4. 本公司致力手对个人信息的保护，最大限度杜绝个人信息的遗失、损坏、篡改、泄漏以及对个人信息的不正当访问。不断加强完善管理体制。</p>
+                            <p>5. 本公司在隐私政策规定的利用范围内使用所获得的个人信息，并设置和实施相应检查手段杜绝利用范围外的使用。</p>
+                            <p>6. 本公司竭诚应对客户对于个人信息的咨询、公开等要求。</p>
+                            <p>7. 本公司将持续完善有关个人信息的管理体制和组成结构。</p>
+                        </div>
+                        
+                        <div>
+                            <h3 className="font-bold text-gray-900 mb-2">隐私政策</h3>
+                            <p className="mb-2">本隐私政策规定了本公司在运营网站以及进行其他经营活动时，对个人信息的使用及管理所采取的方针。为使客户能放心使用本公司的各项服务，本公司将严格遵守有关保护个人信息的法律法规，并且把在公司内部规范收集，使用和严格管理个人信息视为最重要的一环。</p>
+                            
+                            <p className="font-bold mb-1">1. 个人信息的定义</p>
+                            <p className="mb-2">在本隐私政策中记述的“个人信息”指在本公司所保管的会员号码、姓名、性别、邮件地址、电话、地址、昵称、笔名、生日、职业、职位、信用卡信息、购物历史等信息中,通过其中的一个或几个信息的组合即能识别特定个人的信息。</p>
+                            
+                            <p className="font-bold mb-1">2. 使用用途</p>
+                            <p className="mb-1">本公司使用个人信息用于以下用途</p>
+                            <ul className="list-disc pl-5 space-y-1">
+                                <li>(1) 会员管理；</li>
+                                <li>(2) 本公司或第三方进行商品、权利、数字内容以及服务(以下简称“商品等”，包括金融商品)的销售 (包括提供服务和签订合同等，下同。)</li>
+                                <li>(3) 实施活动、有奖企划、问卷调查等；</li>
+                                <li>(4) 有些服务在使用时必须进行会员登陆，为简化会员登陆手续而使用。</li>
+                                <li>(5) 在本网站运营中，及时通知客户某些须告知的事项，(包括发送电子邮件。)</li>
+                                <li>(6) 本公司及第三方进行商品的广告宣传以及推销(包括发送相关电子邮件。)</li>
+                                <li>(7) 发送电子杂志；</li>
+                                <li>(8) 商品的装箱、发送业务；</li>
+                                <li>(9) 计算费用和邮寄账单；</li>
+                                <li>(10) 供积分、优惠券、里程数等服务(以下称“积分等”。)</li>
+                                <li>(11) 登载投稿的信息；</li>
+                                <li>(12) 处理各种查询以及售后服务；</li>
+                                <li>(13) 进行市场数据的调查分析以及新服务项目的开发；</li>
+                                <li>(14) 制作统计资料；</li>
+                                <li>(15) 当其它公权力单位有权委托本公司处理个人信息的业务时使用；</li>
+                                <li>(16) 根据合同、法律规定行使权利和履行义务；</li>
+                                <li>(17) 雇佣；</li>
+                                <li>(18) 研究业务合作；</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="p-4 border-t border-gray-100 bg-gray-50 rounded-b-2xl flex justify-end">
+                        <button onClick={() => setShowPrivacyPolicy(false)} className="bg-gray-900 text-white px-6 py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                            关闭
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )}
     </div>
   );
 };
