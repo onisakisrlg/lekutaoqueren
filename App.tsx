@@ -232,7 +232,108 @@ const App: React.FC = () => {
         )
     },
     { title: "Animate代购规则", tags: ["规则", "代购", "动漫"] },
-    { title: "kyoani代购规则", tags: ["规则", "代购", "京阿尼"] },
+    { 
+        title: "kyoani代购规则", 
+        tags: ["规则", "代购", "京阿尼"],
+        content: (
+            <div className="space-y-6 text-sm text-gray-700">
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">一、平台概述</h4>
+                    <p className="leading-relaxed">
+                        Kyoani shop（京阿尼）是京都动画的官方在线商店。销售与京都动画的作品相关的各种商品，包括DVD和蓝光光盘、漫画书、原画集、T恤、公仔、海报、键盘、以及其他各种周边商品。
+                    </p>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">一、下单方式</h4>
+                    <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-3">
+                        <div>
+                            <span className="font-bold text-gray-900 block mb-1">① 页面导航下单</span>
+                            <span className="text-gray-600">点击【Kyoani】图标进入站点，按品类筛选心仪商品，进入商品的详情页，进行自助下单操作。</span>
+                        </div>
+                        <div>
+                            <span className="font-bold text-gray-900 block mb-1">② 站内搜索下单</span>
+                            <span className="text-gray-600">通过平台内【搜索栏】输入商品关键词-选择【Kyoani】作为搜索范围，查找相关商品后进入商品详情页，进行下自助单操作。</span>
+                        </div>
+                    </div>
+                    <div className="mt-3 bg-red-50 p-3 rounded-lg border border-red-100 text-red-800 text-xs">
+                        <span className="font-bold block mb-1">⚠️ 购买规则</span>
+                        任何通过本平台成功下单的订单，不可因为自身原因而取消订单。一旦下单成功，我们无法处理添加商品、更改数量、与其他订单号合并订单、单独发货等请求。因此请在下单前仔细考虑并确认订单内容和数量。
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">二、运费说明</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <div className="bg-green-50 p-3 rounded-lg border border-green-100">
+                            <span className="font-bold text-green-800 block mb-1">① 免邮规则</span>
+                            <span className="text-green-700 text-xs">单笔订单商品总价满 <span className="font-bold">11,000日元</span> 时，可免日本国内配送运费。</span>
+                        </div>
+                        <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
+                            <span className="font-bold text-blue-800 block mb-1">② 固定运费</span>
+                            <span className="text-blue-700 text-xs">单笔订单商品总价低于11,000日元时，每次日本国内配送，收取运费 <span className="font-bold">880日元</span>。</span>
+                        </div>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg border border-gray-100 text-gray-600 text-xs">
+                        <span className="font-bold block mb-1 text-gray-800">③ 补充说明：</span>
+                        <ul className="list-disc pl-4 space-y-1">
+                            <li>合并一次性结算，可合并发货的计为单笔订单，单个包裹。</li>
+                            <li>每个包裹的商品总价都需要独立达到免邮门槛，否则每次配送将收取880日元的运费。</li>
+                            <li>免邮判断以结算页面-费用明细中的「商品总价」为准，此金额不含运费、手续费等附加费用。</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">三、发货规则</h4>
+                    <p className="text-xs text-gray-500 mb-2">购物车内多件商品合并结算的发货规则如下：</p>
+                    <div className="space-y-3">
+                        <div className="border border-gray-200 rounded-xl p-3">
+                            <span className="font-bold text-gray-800 block mb-1">① 合并发货</span>
+                            <ul className="list-disc pl-4 space-y-1 text-xs text-gray-600">
+                                <li>最早和最晚“发货日”相差30天及以内的商品：将以一个包裹的形式一起发货。合并结算后计为单笔订单，仅支付一笔运费。</li>
+                                <li>不同“预计发货日”的预售商品也可以一起发货，只要每件商品的发货日间隔在30天内即可。</li>
+                            </ul>
+                        </div>
+                        <div className="border border-gray-200 rounded-xl p-3">
+                            <span className="font-bold text-gray-800 block mb-1">② 分开发货</span>
+                            <p className="text-xs text-gray-600">最早和最晚“发货日”相差31天或以上的商品：即使合并结算，也会根据30天周期拆分成不同订单，分开发货，单独结算运费。</p>
+                        </div>
+                        <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-100 text-yellow-800 text-xs">
+                            <span className="font-bold">③ 判断规则：</span>由系统根据各商品的发货日和配送方式，自动判断是否合并发货，不可申请或修改。
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">四、发货时效</h4>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                        <li><span className="font-bold text-gray-800">① 现货商品（有库存）：</span>付款后，在3至5个工作日内发货。<br/><span className="text-xs text-gray-400">*若遇特殊情况，发货时间可能延长，以实际发货为准。</span></li>
+                        <li><span className="font-bold text-gray-800">② 预售商品：</span>会按照商品页标注的预计发货日期发出。<br/><span className="text-xs text-gray-400">*预计发货日期为估计值，可能会因交通状况、天气、制造工艺缺陷等发生变化。</span></li>
+                        <li><span className="font-bold text-gray-800">③ 混合订单：</span>如果同时买了现货商品和预售商品（或发货日期不同的预售商品），会等到最晚发货的商品准备好后，才一起发货。</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">五、售后相关</h4>
+                    <div className="space-y-3 text-xs text-gray-600">
+                        <p>✦ 通过本平台成功下单的订单，不可因为自身原因而取消订单。因此用户于付款前再三确认自己购买意向和所购商品是否正确再进行下单。</p>
+                        <p>✦ 平台默认用户在购买时已明晰商品所属状态，因此平台作为一个帮助日本国外买家和日本国内卖家沟通的购买通道，不承担商品的任何品相问题的责任，不接受任何情况下的单方面要求取消订单退款的要求。</p>
+                        <p>✦ 商品换货、卖家直接取消订单等没有让平台产生人工对应沟通成本的，平台不收取费用；让平台产生人工对应沟通成本的，将收取对应费：订单价格（含岛内运费）的10%（包含7%平台人工处理费+3%第三方支付平台手续费），不足1000日元的商品固收100日元。</p>
+                        
+                        <div className="bg-red-50 p-3 rounded-lg border border-red-100 text-red-800">
+                            <span className="font-bold block mb-1">Kyoani售后特殊说明</span>
+                            用户需在收到商品入库返图后<span className="font-bold">5天内</span>完成订单确认操作。如确认存在错发、漏发、商品缺陷等问题，请在5天内联系平台客服，并提供有效凭证。平台将发送邮件咨询官方的处理流程，并协助处理争议。商品入库返图超过5天，平台将不再做任何应对，默认用户无异议。请务必在时限内进行商品确认。
+                        </div>
+
+                        <p className="text-blue-500">✦ 详细售后服务，请查阅用户手册-《售后服务》。</p>
+                    </div>
+                </section>
+
+                <p className="text-center text-xs text-gray-400 mt-4 pt-4 border-t">请充分了解相关购物风险，认真仔细阅读商品页面上的说明再进行选购。</p>
+            </div>
+        )
+    },
     { 
         title: "Mandarake代购规则", 
         tags: ["规则", "代购", "二手", "Mandarake"],
