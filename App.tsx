@@ -1050,7 +1050,156 @@ const App: React.FC = () => {
         )
     },
     { title: "煤炉拍卖代购规则", tags: ["规则", "拍卖", "Mercari"] },
-    { title: "雅虎日拍代购规则", tags: ["规则", "拍卖", "Yahoo"] },
+    { 
+        title: "雅虎日拍代购规则", 
+        tags: ["规则", "拍卖", "Yahoo"],
+        content: (
+            <div className="space-y-6 text-sm text-gray-700">
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">一、平台概述</h4>
+                    <p className="leading-relaxed mb-2">
+                        日本雅虎日拍是一个品种丰富多样的跨境电商平台，采用拍卖形式吸引买家竞争出价。乐酷淘很荣幸为您提供雅虎日拍自助出价功能，当前平台提供【出价竞拍】和【一口价】两种购买方式，当您出价时，系统都将自动进行处理，24小时实时出价。
+                    </p>
+                    <div className="bg-yellow-50 p-2 rounded text-yellow-800 text-xs font-bold inline-block">
+                        * 会员等级V2及以上可找客服开通雅虎日拍站点入口。
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">二、购买方式</h4>
+                    <p className="text-gray-600 mb-2">根据雅虎日拍上的卖家设置，有【出价竞拍】和【一口价】两种购买方式。</p>
+                    <div className="space-y-3">
+                        <div className="bg-white border border-gray-200 p-3 rounded-lg shadow-sm">
+                            <span className="font-bold text-gray-800 block mb-1">① 出价竞拍</span>
+                            <span className="text-gray-600 text-xs">卖家未设置一口价或者您想要参与竞拍时，可点击【出价竞拍】，与其他竞拍者进行竞价。平台出价仅支持钱包支付，因此参与拍卖时，请确保钱包内充值金额充足，在拍卖过程中会根据出价扣除相应的支付金额。</span>
+                        </div>
+                        <div className="bg-white border border-gray-200 p-3 rounded-lg shadow-sm">
+                            <span className="font-bold text-gray-800 block mb-1">② 一口价</span>
+                            <span className="text-gray-600 text-xs">一口价购买无需参与竞拍，当卖家设置了一口价时，可以直接以一口价购入拍品。避免与其他竞拍者竞价直接入手您心仪的拍品。</span>
+                        </div>
+                        <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
+                            <span className="font-bold text-gray-800 block mb-1">③ 特殊情况</span>
+                            <span className="text-gray-600 text-xs">卖家同时设置了一口价和竞拍价的情况下，如果选用【出价竞拍】方案进行出价且出价金额≥一口价，最终将会以一口价金额购入。</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">三、自动延迟</h4>
+                    <div className="space-y-2 text-xs text-gray-600">
+                        <p>① 如果“当前价格”在结束前5分钟内上涨，则结束时间将延长5分钟。如果在结束前5分钟内再次上涨，则会继续延长，类似拍卖中的敲槌时间。</p>
+                        <p>② 如果在结束前5分钟内有人出价，但该价格并未刷新当前的最高价格，结束时间则不会自动延长。</p>
+                    </div>
+                    <div className="mt-3 bg-red-50 p-3 rounded-lg border border-red-100 text-red-800 text-xs">
+                        <span className="font-bold block mb-1"><AlertTriangle size={14} className="inline mr-1"/> 特别提醒</span>
+                        由于雅虎原站的问题，如果在即将结束时，价格上涨导致时间延长，雅虎的状态可能会显示为「残り時間：終了」，平台可能会存在难以判断的情况导致显示为拍卖结束，请尽量减少类似倒计时出价的操作。
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">四、竞拍结果</h4>
+                    <div className="space-y-3">
+                        <div className="bg-green-50 border border-green-100 p-3 rounded-lg">
+                            <span className="font-bold text-green-800 block mb-1">① 竞拍成功</span>
+                            <p className="text-green-700 text-xs leading-relaxed">竞拍成功后须等待后台人工报价，再支付商品的【代购手续费】、【日本国内运费】、【日本国内消费税】等各项补款。支付完成即视作完成拍卖程序，等待平台与卖家进行交涉，通常24小时内会完成下单 ，等待商品入库后支付国际运费提交发货。</p>
+                        </div>
+                        <div className="bg-gray-50 border border-gray-100 p-3 rounded-lg">
+                            <span className="font-bold text-gray-800 block mb-1">② 竞拍不成功</span>
+                            <div className="text-gray-600 text-xs space-y-1">
+                                <p><span className="font-bold">✦ 竞拍被终止：</span>提前终止是日拍卖家特有的权利，卖家可以在预定结束时间之前进行操作，操作后当前出价最高的买家得标。</p>
+                                <p><span className="font-bold">✦ 竞拍被取消：</span>日拍卖家可以进行取消拍卖和取消当前最高得标者出价的操作。因此会出现有人出价却无人得标的情况，以及即使您的出价为当前最高出价，也可能流拍。</p>
+                                <p className="text-gray-400 mt-1">* 凡最终不得标的情况，均视为竞拍不成功，例如竞拍失败、商品流拍等。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">五、能否取消订单</h4>
+                    <div className="space-y-2">
+                        <p className="text-xs text-gray-600"><span className="font-bold">① 退款情形：</span>如果钱包余额低于当前最高出价，并且最高出价者不是自己时，可手动退款结束拍卖或等待拍卖结束后自动全额退款。商品正常流拍或卖家取消商品，自动全额退款。</p>
+                        <p className="text-xs text-gray-600"><span className="font-bold">② 不可取消：</span>竞拍成功即代表交易已成交确认，无论平台是否完成了下单，用户均无法申请取消订单。</p>
+                    </div>
+                    <div className="mt-2 bg-yellow-50 p-3 rounded-lg border border-yellow-100 text-xs text-yellow-800">
+                        雅虎日拍交易规则与费用均较为复杂，因此建议在出价前仔细查看商品信息、确认商品费用并明确购买意向，以免造成不必要的损失。
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">六、费用说明</h4>
+                    
+                    <div className="space-y-4">
+                        <div>
+                            <h5 className="font-bold text-gray-800 text-sm mb-1">1. 代拍收费</h5>
+                            <p className="text-xs text-gray-600">乐酷淘以每个拍品最终成交价格阶梯收费。在拍品得标后手续费以全部费用叠加后的最终价格为基础计算向您收取。如果有活动就按照活动的标准进行计算。若一直未进行手续费等支付操作，平台不会取消订单，订单会自动进入挂起状态。</p>
+                        </div>
+
+                        <div>
+                            <h5 className="font-bold text-gray-800 text-sm mb-1">2. 日本国内消费税</h5>
+                            <p className="text-xs text-gray-600 mb-1">雅虎日拍拍品的得标价为不含税价。</p>
+                            <ul className="list-disc pl-4 text-xs text-gray-600 space-y-1">
+                                <li>雅虎店铺的拍品需要额外缴纳得标价10％的日本国内消费税，而普通个人卖家则不需要。</li>
+                                <li>若您购买的拍品来自雅虎店铺，平台会在拍品得标后向您收取消费税。</li>
+                                <li>由于乐酷淘是注册在日本国内的企业，因此无法按照日本【旅游】退税条例要求退税。</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h5 className="font-bold text-gray-800 text-sm mb-1">3. 日本国内运费</h5>
+                            <ul className="list-disc pl-4 text-xs text-gray-600 space-y-1">
+                                <li>雅虎日拍的卖家可能会提供多种日本国内物流方式以供选择，具体的运费费用以卖家实际收取的数额为准。</li>
+                                <li>商品详情标注卖家包邮的商品，原则上用户无需支付日本国内运费；标注买家承担的商品，需用户承担。</li>
+                                <li>如果包邮商品因卖家原因造成日本国内配送运费不足的，其中差价仍由用户承担。</li>
+                                <li>为了用户商品运输安全，平台默认带有物流号可跟踪物流的运输方式，用户无法选择其他运输方式，可能会因此产生较高的日本国内运费费用，该费用将在拍品得标后向您收取。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">七、竞拍售后与免责</h4>
+                    
+                    <div className="bg-red-50 p-4 rounded-xl border border-red-100 space-y-3 text-xs text-red-800 mb-4">
+                        <h5 className="font-bold flex items-center gap-1 text-sm"><ShieldAlert size={16}/> 平台免责声明</h5>
+                        <p><span className="font-bold">拍品特性与风险：</span>由于雅虎日拍的卖家大部分为【个人卖家】，通常贩卖的拍品为已使用过的二手拍品、非标准拍品、合集类拍品。此类拍品大多数情况下品相描述含糊不定，内容复杂且拍品说明不清，存在一定风险。</p>
+                        <p><span className="font-bold">免责范围：</span>雅虎日拍卖家所售拍品无法享受全程购物保障计划、平台不承担任何从雅虎日拍购买拍品的任何品相问题的责任，不接受任何情况下的单方面要求取消订单退款的要求。此类责任包括但不限于：卖家拒绝交易、迟迟不发货、物流无保障导致丢失损坏、真伪问题、配件缺失、实物与描述不符等。</p>
+                        <p><span className="font-bold">协助交涉：</span>平台将会尽力协助用户与卖家进行交涉，但最终能否得到解决、能否获得赔付，都取决于卖家的服务质量，当卖家拒绝售后、问题无法得到解决时需要用户自行承担相关损失。</p>
+                    </div>
+
+                    <p className="text-xs text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <span className="font-bold">关于退款：</span>竞拍过程中如果用户是拍品当前最高出价者，无法结束竞拍申请退款，只有被他人的出价超过时，才能申请结束拍卖。当竞拍成功后，用户无法以任何主观理由申请取消订单，因此请用户于付款前再三确认自己购买意向和所购拍品是否正确。
+                    </p>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">八、日拍常见问题</h4>
+                    <div className="space-y-3">
+                        {[
+                            { q: "如何在乐酷淘进行雅虎日拍自助拍卖？", a: "目前雅虎日拍自助拍卖还在测试中，因此为了尽可能保证用户的网络财产安全，需要向人工客服申请，通过审核后，才能开通平台的自助拍卖权限，开通后你就可以平台的雅虎日拍站点进行自助拍卖。" },
+                            { q: "我可以给雅虎日拍卖家留言询问商品情况吗？", a: "不可以，雅虎日拍原站不支持给卖家留言。" },
+                            { q: "想要购买复数出品的拍品应该怎么操作？", a: "需联系人工客服，添加特别客服QQ。" },
+                            { q: "我出价以后，后悔了可以取消吗？", a: "不可以，根据雅虎拍卖的规则，竞拍出价不允许取消，因此只有等有人出价高于你时，才可以手动退款结束拍卖或等待拍卖结束后自动全额退款。" },
+                            { q: "为什么我在平台出价了，雅虎日拍原站没有显示我的出价？", a: "平台的出价账号被日拍出品者拉黑无法出价，或者雅虎日拍特殊的加价规则导致滞后。建议您在距离竞拍结束至少2分钟前出价，避免出价失败。" },
+                            { q: "明明最后有人超过我的出价，为什么最终是我得标了？", a: "雅虎日拍的出品者有删除竞拍者出价的权限，如果出品者在竞拍尚未结束的时候删除了最高出价，第二高的出价就会变为当前最高出价。" },
+                            { q: "得标以后，还需要做什么操作？", a: "得标以后，请等待系统报价，报价包含平台手续费、非包邮商品的日本国内运费以及可能产生的商品消费税。" },
+                            { q: "得标以后，我不想支付过多费用，可以弃标吗？", a: "不可以，如果得标后没有及时支付差额费用，会平台站内信通知，若始终不支付差额费用，平台将限制其在平台名下商品出库。" },
+                            { q: "支持同捆吗？", a: "目前自助拍卖暂不支持同捆。" },
+                            { q: "雅虎日拍订单可以用优惠券或者积分吗？", a: "不可以，目前平台暂不支持雅虎日拍订单支付使用优惠券或者积分。" },
+                            { q: "得标商品可以不要想要了吗？", a: "不可以，平台默认用户在购买时已明晰商品所属状态，不承担任何从雅虎日拍购买商品的任何品相问题的责任，不接受任何情况下的单方面要求取消订单退款的要求。" },
+                            { q: "我买到假货怎么办，能退吗？", a: "官方基本不插手买家与卖家之间的纠纷，能否追回损失仅看雅虎卖家个人意愿。发现有问题的卖家可及时反馈给人工客服，但坚持下单后又要求退货退款的，平台概不受理。" }
+                        ].map((qa, i) => (
+                            <div key={i} className="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                <p className="font-bold text-gray-900 text-xs mb-1">问：{qa.q}</p>
+                                <p className="text-gray-600 text-xs">答：{qa.a}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                <p className="text-center text-xs text-gray-400 mt-4 pt-4 border-t">请充分了解相关购物风险，认真仔细阅读商品页面上的说明再进行选购。</p>
+            </div>
+        )
+    }
   ];
 
   const filteredArticles = useMemo(() => {
