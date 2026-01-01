@@ -31,7 +31,8 @@ import {
   CheckCircle2, 
   Clock, 
   Bot,
-  X
+  X,
+  Wallet
 } from 'lucide-react';
 
 const BrandIcon = ({ text, color = "bg-yellow-50", textColor = "text-yellow-600", iconUrl }: { text: string, color?: string, textColor?: string, iconUrl?: string }) => (
@@ -147,6 +148,135 @@ const App: React.FC = () => {
   );
 
   const manualData: Article[] = [
+    { 
+        title: "提款说明手册", 
+        tags: ["提现", "规则", "资金", "合规"],
+        content: (
+            <div className="space-y-6 text-sm text-gray-700">
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2 flex items-center gap-2">
+                        <Wallet className="text-blue-500" size={20} /> 一、服务简介
+                    </h4>
+                    <p className="leading-relaxed">
+                        乐酷淘为平台用户提供合规、安全的人民币提现服务。用户在充值日元后，可将符合条件的金额提取为人民币，经平台审核、结算后，返还至原支付路径（如微信、支付宝）。所有资金流动均遵循中国及日本相关法规，确保交易合法、资金可控、路径清晰。
+                    </p>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">二、提现规则（务必阅读）</h4>
+                    <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 space-y-3">
+                        <h5 className="font-bold text-blue-900 mb-1">提现展示逻辑说明</h5>
+                        <p className="text-xs text-blue-800 leading-relaxed">
+                            为有效控制汇率风险与防范资金套利，平台设置提现路径自动识别与筛选机制，系统会根据用户的当前余额与充值记录，智能判断可提现路径，具体规则如下：
+                        </p>
+                        <ul className="list-disc pl-4 text-xs text-blue-800 space-y-1">
+                            <li>系统最多展示九个月内的充值记录用于提现；</li>
+                            <li>当前钱包余额满足条件的情况下，提现记录将按以下规则逐步展示：</li>
+                        </ul>
+                        
+                        <div className="bg-white p-3 rounded-lg border border-blue-200">
+                            <span className="font-bold text-blue-900 block mb-2 text-xs">展示规则：</span>
+                             <ul className="list-disc pl-4 text-xs text-blue-800 space-y-1 mb-2">
+                                <li>若您的余额小于或等于最近一笔充值金额，系统仅展示该最近充值路径；</li>
+                                <li>若您的余额大于最近一笔充值金额，系统将依次向前展示次近充值记录，直到可提现金额达到当前余额或超出九个月范围；</li>
+                                <li>每次提现后，系统将重新评估当前余额，自动调整展示的可提现充值记录列表。</li>
+                            </ul>
+                            <div className="bg-gray-50 p-2 rounded text-xs text-gray-600 space-y-1">
+                                <p><span className="font-bold">示例：</span></p>
+                                <p>• 5月20日：充值 5,000 日元（最近一笔）</p>
+                                <p>• 5月15日：充值 3,000 日元（次近一笔）</p>
+                                <p>• 5月12日：充值 2,000 日元</p>
+                                <p className="font-bold text-blue-600 mt-1">当前钱包余额：6,000 日元</p>
+                                <p>系统将展示5月20日与5月15日两笔充值供用户选择。</p>
+                                <p className="mt-1">如您提现了5月15日中的2,000日元，剩余余额变为4,000日元，此时系统将仅展示5月20日的记录（因余额低于该笔充值金额），其余路径不再展示。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">三、操作限制与时间规则</h4>
+                    <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                       <li><span className="font-bold text-gray-800">提现时间：</span>每月最后1日 12:00（北京时间）起暂停提现申请，次月1日0:00恢复；</li>
+                       <li><span className="font-bold text-gray-800">汇率结算：</span>提现金额将以原充值汇率为基准，并依照您选择的支付渠道（如微信/支付宝）自动兑换为人民币结算；</li>
+                       <li><span className="font-bold text-gray-800">手续费：</span>平台不收取提现手续费，但支付渠道可能产生汇率差异或结算服务费用；</li>
+                       <li><span className="font-bold text-gray-800">退款时效：</span>因第三方平台限制，超过9个月的充值不支持自动退款，需走人工审核流程。因微信、支付宝官方限制，交易时间超过一年的订单无法提交退款。</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">四、合规性说明（法律依据）</h4>
+                    <p className="text-xs text-gray-500 mb-2">为遵守国家金融监管要求，平台提现服务严格依据以下法规执行：</p>
+                    <div className="overflow-hidden border border-gray-200 rounded-lg mb-3 shadow-sm">
+                        <table className="min-w-full divide-y divide-gray-200">
+                            <thead className="bg-gray-50">
+                                <tr>
+                                    <th className="px-3 py-2 text-left text-xs font-bold text-gray-500 uppercase tracking-wider w-1/3">法规名称</th>
+                                    <th className="px-3 py-2 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">相关条款</th>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white divide-y divide-gray-200 text-xs">
+                                <tr>
+                                    <td className="px-3 py-2 font-bold text-gray-700 bg-gray-50/50">《反洗钱法》第6条</td>
+                                    <td className="px-3 py-2 text-gray-600">金融服务需识别客户身份，审查交易是否真实合法</td>
+                                </tr>
+                                <tr>
+                                    <td className="px-3 py-2 font-bold text-gray-700 bg-gray-50/50">《外汇管理条例》第8条</td>
+                                    <td className="px-3 py-2 text-gray-600">跨境交易须真实、路径清晰、不得变相买卖外汇</td>
+                                </tr>
+                                <tr>
+                                    <td className="px-3 py-2 font-bold text-gray-700 bg-gray-50/50">《支付机构反洗钱与反恐怖融资管理办法》第27条</td>
+                                    <td className="px-3 py-2 text-gray-600">支付机构应识别交易路径，避免资金滥用、套利</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p className="text-xs text-gray-600 bg-gray-50 p-2 rounded border border-gray-100">
+                        <span className="font-bold">合规核心：</span>平台仅允许用户提取“原始充值路径”下的当期金额，确保资金来源明确、路径可追溯，防范因跨期提现导致的合规风险与结汇风险。
+                    </p>
+                </section>
+
+                <section>
+                    <div className="bg-red-50 p-4 rounded-xl border border-red-100 text-red-800 text-xs shadow-sm">
+                        <h5 className="font-bold mb-2 flex items-center gap-1 text-sm"><AlertTriangle size={16}/> 五、风险提示</h5>
+                        <ol className="list-decimal pl-4 space-y-1.5">
+                            <li>跨期提现或不按路径返还资金，可能被支付机构或监管认定为异常交易，严重者将导致提现失败、资金退回或账户受限；</li>
+                            <li>所有提现记录平台将全程留档，必要时提交给支付渠道或监管机构进行审计；</li>
+                            <li>用户不得代他人提现、虚构交易路径、循环资金，平台发现异常行为将拒绝处理并保留法律追责权利。</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 className="font-bold text-gray-900 text-lg mb-2">六、常见问题（FAQ）</h4>
+                    <div className="space-y-3">
+                        {[
+                            { q: "我充值了几次，可以选择从哪一笔提现吗？", a: "可以。在系统展示的可提现路径中，您可选择任意一笔进行提现，但仅限于系统根据当前余额规则所展示的记录。" },
+                            { q: "钱包有余额，为什么不能提现？", a: "余额中可能包含超期（超过9个月）充值金额，该部分不可提现，仅可用于平台消费。" },
+                            { q: "老充值记录可以申请人工提现吗？", a: "不支持提现。平台仅支持九个月内充值记录中尚未消费的部分提现，超期记录不再展示也不接受人工处理。" },
+                            { q: "提现金额怎么计算汇率？", a: "提现金额将按原充值时汇率结算，避免汇率波动带来损失。" }
+                        ].map((item, idx) => (
+                            <div key={idx} className="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                <p className="font-bold text-gray-900 text-xs mb-1">Q{idx+1}：{item.q}</p>
+                                <p className="text-gray-600 text-xs">A：{item.a}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="text-xs text-gray-500 space-y-3 border-t border-gray-100 pt-4 mt-6">
+                    <div>
+                        <span className="font-bold text-gray-700 block mb-1">七、客户服务支持</span>
+                        如您对提现流程、金额识别、汇率结算等有任何疑问，请联系平台客服，我们将协助您合规、安全完成提现操作。
+                    </div>
+                    <div className="bg-gray-50 p-2 rounded">
+                        <span className="font-bold text-gray-700 block mb-1">八、特别说明</span>
+                        平台作为跨境服务提供商，必须执行金融合规机制。所有提现限制、周期规则、原路径返还机制，均基于国家法规设定，非平台可自由调整或豁免，敬请理解配合。
+                    </div>
+                </section>
+            </div>
+        )
+    },
     { 
         title: "APP新手指南", 
         tags: ["入门", "注册", "教程", "流程"],
